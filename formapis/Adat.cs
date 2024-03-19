@@ -27,6 +27,11 @@ namespace formapis
 
         [JsonProperty("salary")]
         public long Salary { get; set; }
+
+        public override string ToString()
+        {
+            return Id+", "+Name + ", " + Salary;
+        }
     }
 
     public partial class Adat
@@ -51,4 +56,6 @@ namespace formapis
             },
         };
     }
+
+    
 }

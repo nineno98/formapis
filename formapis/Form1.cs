@@ -19,7 +19,7 @@ namespace formapis
         static List<Adat> adatok = new List<Adat>();
 
        
-         async Task restapiAdatok()
+         private async void restapiAdatok()
          {
             var client = new HttpClient();
             var request = new HttpRequestMessage(HttpMethod.Get, endPointUrl);
@@ -30,6 +30,8 @@ namespace formapis
                 response.EnsureSuccessStatusCode();
                 string jsonstring = await response.Content.ReadAsStringAsync();
                 adatok = Adat.FromJson(jsonstring).ToList();
+                listBox1.Items.AddRange(adatok.ToArray());
+
 
             }
             catch (HttpRequestException)
@@ -52,7 +54,7 @@ namespace formapis
         private void Form1_Load(object sender, EventArgs e)
         {
             restapiAdatok();
-            listBox1.Items.AddRange(adatok.ToArray());
+            
             
         }
 
