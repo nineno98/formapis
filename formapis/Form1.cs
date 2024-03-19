@@ -92,8 +92,52 @@ namespace formapis
                 MessageBox.Show("Sikertelen hozzáadás!");
             }
             restapiAdatok();
-            // válasz feldolgozása, visszajelzés
+            
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedIndex < 0)
+            {
+                MessageBox.Show("Nincs Kiválasztott elem!");
+                return;
+            }
+            Adat adat = (Adat)listBox1.SelectedItem;
+            string deleteUrl = $"{endPointUrl}/{adat.Id}";
+
+            
+            var response = client.DeleteAsync(deleteUrl);
+
+            try
+            {
+                response.IsCompleted();
+                MessageBox.Show("Sikeres törlés!");
+                textBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
+
+                restapiAdatok();
+
+
+            }
+            catch (HttpRequestException)
+            {
+
+                MessageBox.Show("Sikertelen törlés!");
+            }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedIndex < 0)
+            {
+                return;
+            }
+            Adat adat = (Adat)listBox1.SelectedItem;
+            textBox3.Text = adat.Salary.ToString();
+            textBox2.Text = adat.Name;
+            textBox1.Text = adat.Id.ToString();
         }
     }
 }

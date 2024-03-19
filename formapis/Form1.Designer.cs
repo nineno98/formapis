@@ -49,6 +49,7 @@ namespace formapis
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(225, 303);
             this.listBox1.TabIndex = 0;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -125,6 +126,7 @@ namespace formapis
             this.button3.TabIndex = 9;
             this.button3.Text = "Törlés";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
