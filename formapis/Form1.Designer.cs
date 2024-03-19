@@ -106,6 +106,7 @@ namespace formapis
             this.createButton.TabIndex = 7;
             this.createButton.Text = "Beszúrás";
             this.createButton.UseVisualStyleBackColor = true;
+            this.createButton.Click += new System.EventHandler(this.createButton_Click);
             // 
             // button2
             // 

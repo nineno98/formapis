@@ -28,6 +28,18 @@ namespace formapis
         [JsonProperty("salary")]
         public long Salary { get; set; }
 
+        [JsonConstructor]
+        public Adat(long id, string name, long salary)
+        {
+            Id = id;
+            Name = name;
+            Salary = salary;
+        }
+
+        public Adat()
+        {
+        }
+
         public override string ToString()
         {
             return Id+", "+Name + ", " + Salary;

@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Http;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 
 namespace formapis
@@ -17,11 +19,11 @@ namespace formapis
         static string endPointUrl = "https://retoolapi.dev/KqpqJ9/data";
 
         static List<Adat> adatok = new List<Adat>();
+        HttpClient client = new HttpClient();
 
-       
-         private async void restapiAdatok()
+        private async void restapiAdatok()
          {
-            var client = new HttpClient();
+            listBox1.Items.Clear();
             var request = new HttpRequestMessage(HttpMethod.Get, endPointUrl);
             var response = await client.SendAsync(request);
 
@@ -39,12 +41,6 @@ namespace formapis
 
                 throw;
             }
-
-            
-
-            
-
-
          }
         public Form1()
         {
@@ -58,6 +54,46 @@ namespace formapis
             
         }
 
-        
+        private void createButton_Click(object sender, EventArgs e)
+        {
+            // kiolvasás
+            if (String.IsNullOrEmpty(textBox2.Text))
+            {
+                MessageBox.Show("Nincs megadva név");
+                textBox2.Focus();
+                return;
+            }
+            long fizetes;
+            if (!long.TryParse(textBox3.Text, out fizetes))
+            {
+                MessageBox.Show("Nem megfelelő értéket adott meg fizetésként!");
+                textBox3.Focus();
+                return;
+            }
+            // json-t készítünk
+            Adat adat = new Adat();
+            adat.Name = textBox2.Text;
+            adat.Salary = fizetes;
+            string jsondolgozo = JsonConvert.SerializeObject(adat);
+
+            // json-string
+            var data = new StringContent(jsondolgozo, Encoding.UTF8, "application/json"); // elkészíti a fejlécet
+
+            // post request
+            var response = client.PostAsync(endPointUrl, data).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                MessageBox.Show("Sikeres hozzáadás!");
+                textBox2.Text = "";
+                textBox3.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("Sikertelen hozzáadás!");
+            }
+            restapiAdatok();
+            // válasz feldolgozása, visszajelzés
+
+        }
     }
 }
