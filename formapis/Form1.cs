@@ -25,12 +25,20 @@ namespace formapis
             var request = new HttpRequestMessage(HttpMethod.Get, endPointUrl);
             var response = await client.SendAsync(request);
 
-            if (!response.EnsureSuccessStatusCode())
+            try
             {
-                
+                response.EnsureSuccessStatusCode();
                 string jsonstring = await response.Content.ReadAsStringAsync();
                 adatok = Adat.FromJson(jsonstring).ToList();
+
             }
+            catch (HttpRequestException)
+            {
+
+                throw;
+            }
+
+            
 
             
 
@@ -45,6 +53,7 @@ namespace formapis
         {
             restapiAdatok();
             listBox1.Items.AddRange(adatok.ToArray());
+            
         }
 
         
