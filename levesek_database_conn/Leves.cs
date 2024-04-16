@@ -34,5 +34,11 @@ namespace levesek_database_conn
         public double Szenhidrat { get => szenhidrat_; set => szenhidrat_ = value; }
         public double Hamu { get => hamu_; set => hamu_ = value; }
         public double Rost { get => rost_; set => rost_ = value; }
+
+
+        public override string ToString()
+        {
+            return megnevezes_ + " " + kaloria_ + " " + feherje_ + " " + zsir_ + " " + szenhidrat_ + " " + hamu_ + " " + rost_;
+        }
     }
 }
