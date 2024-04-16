@@ -12,65 +12,44 @@ namespace levesek_database_conn
     {
         static void Main(string[] args)
         {
+            
+            LevesekConnect connLevesek = new LevesekConnect();
+            connLevesek.Connect();
 
-            List<Leves> levesek = new List<Leves>();
-            Leves leves;
-            string sqlStatement;
-            MySqlConnection dbConnection;
-            MySqlDataReader reader;
-            MySqlConnectionStringBuilder strBuild = new MySqlConnectionStringBuilder();
-            strBuild.Server = "localhost";
-            strBuild.UserID = "root";
-            strBuild.Password = "";
-            strBuild.Database = "levesek";
+            List<Leves> levesek = connLevesek.GetLevesek();
 
-            dbConnection = new MySqlConnection(strBuild.ToString());
-            sqlStatement = "SELECT megnevezes, kaloria, feherje, zsir, szenhidrat, hamu, rost FROM `levesek`;";
-
-            try
+            foreach (Leves item in levesek)
             {
-                dbConnection.Open();
-
-                MySqlCommand command = new MySqlCommand();
-                command.Connection = dbConnection;
-                command.CommandText = sqlStatement;
-
-                reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    leves = new Leves(reader.GetString(0), reader.GetInt32(1), reader.GetDouble(2), reader.GetDouble(3), reader.GetDouble(4), reader.GetDouble(5), reader.GetDouble(6));
-                    Console.WriteLine(reader.GetString(0) + " " + reader.GetInt32(1) + " " + reader.GetDouble(2)
-                        +" "+reader.GetDouble(3)+ " "+reader.GetDouble(4)+" "
-                        +reader.GetDouble(5)+" "+reader.GetDouble(6));
-
-                    levesek.Add(leves);
-                }
-
-
-                Console.WriteLine("**************");
-
-                foreach (Leves i in levesek)
-                {
-                    Console.WriteLine(i);
-                }
-                /*
-                output = command.ExecuteScalar().ToString();
-                Console.WriteLine(output);*/
-
-                Console.ReadKey();
-
-                dbConnection.Close();
-            }
-            catch (Exception)
-            {
-
-                throw;
+                Console.WriteLine(item);
             }
 
+            Console.WriteLine("*** Feladatok ***");
 
+            // 1. feladat
+            Console.WriteLine("Levesek száma: "+levesek.Count());
 
+            //2.feladat
+            
+            
+            foreach (Leves item in levesek)
+            {
+                if (item.Kaloria == levesek.Select(x => x.Kaloria).Max())
+                {
+                    Console.WriteLine("Max kalória: " +item);
+                }
+            }
+            //3. feladata
+            foreach (Leves item in levesek)
+            {
+                if (!String.IsNullOrEmpty(item.Megnevezes_) && !item.Megnevezes_.Contains("leves"))
+                {
+                    Console.WriteLine("Nem tartalmaz 'leves' stringet: "+item);
+                }
+            }
 
+            
+
+            Console.ReadKey();
         }
     }
 }
