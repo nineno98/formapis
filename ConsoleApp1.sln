@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "formapis", "formapis\formap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "levesek_database_conn", "levesek_database_conn\levesek_database_conn.csproj", "{EDD50A9C-EC56-4BCF-9030-FF32F9E88399}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "insert_leves", "insert_leves\insert_leves.csproj", "{0FA965EA-1434-4AEE-BF76-9D5534C2BEA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EDD50A9C-EC56-4BCF-9030-FF32F9E88399}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDD50A9C-EC56-4BCF-9030-FF32F9E88399}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDD50A9C-EC56-4BCF-9030-FF32F9E88399}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FA965EA-1434-4AEE-BF76-9D5534C2BEA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FA965EA-1434-4AEE-BF76-9D5534C2BEA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FA965EA-1434-4AEE-BF76-9D5534C2BEA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FA965EA-1434-4AEE-BF76-9D5534C2BEA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
