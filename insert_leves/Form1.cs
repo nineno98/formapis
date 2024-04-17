@@ -60,6 +60,7 @@ namespace insert_leves
             hamu.Text = selectedLeves.Hamu.ToString();
             rost.Text = selectedLeves.Rost.ToString();
 
+            DeselectButton.Enabled = true;
             bevitel.Enabled = false;
             deleteLevesButton.Enabled = true;
             updateButton.Enabled = true;
@@ -77,6 +78,15 @@ namespace insert_leves
 
             levesconn.DeleteLeves(levesForDeleting);
             Update();
+            bevitel.Enabled = true;
+            updateButton.Enabled = false;
+            megnevezes.Text = "";
+            kaloria.Text = "";
+            feherje.Text = "";
+            zsir.Text = "";
+            szenhidrat.Text = "";
+            hamu.Text = "";
+            rost.Text = "";
         }
 
         private void updateButton_Click(object sender, EventArgs e)
@@ -129,39 +139,51 @@ namespace insert_leves
 
         private void bevitel_Click(object sender, EventArgs e)
         {
+
+            if (megnevezes.Text !="" && kaloria.Text != "" 
+                && feherje.Text != "" && zsir.Text != "" && szenhidrat.Text != "" 
+                && hamu.Text != "" && rost.Text != "")
+            {
+                try
+                {
+                    megneveves_ = megnevezes.Text;
+                    megnevezes.Text = "";
+                    kaloria_ = Convert.ToInt32(kaloria.Text);
+                    kaloria.Text = "";
+                    feherje_ = Convert.ToDouble(feherje.Text);
+                    feherje.Text = "";
+                    zsir_ = Convert.ToDouble(zsir.Text);
+                    zsir.Text = "";
+                    szenhidrat_ = Convert.ToDouble(szenhidrat.Text);
+                    szenhidrat.Text = "";
+                    hamu_ = Convert.ToDouble(hamu.Text);
+                    hamu.Text = "";
+                    rost_ = Convert.ToDouble(rost.Text);
+                    rost.Text = "";
+                    leves = new Leves(megneveves_, kaloria_, feherje_, zsir_, szenhidrat_, hamu_, rost_);
+                    levesconn.InsertLeves(leves);
+                    Update();
+                }
+                catch (Exception err)
+                {
+
+                    MessageBox.Show(err.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nem lehet mező üresen!");
+            }
             
-
-            try
-            {
-                megneveves_ = megnevezes.Text;
-                megnevezes.Text = "";
-                kaloria_ = Convert.ToInt32(kaloria.Text);
-                kaloria.Text = "";
-                feherje_ = Convert.ToDouble(feherje.Text);
-                feherje.Text = "";
-                zsir_ = Convert.ToDouble(zsir.Text);
-                zsir.Text = "";
-                szenhidrat_ = Convert.ToDouble(szenhidrat.Text);
-                szenhidrat.Text = "";
-                hamu_ = Convert.ToDouble(hamu.Text);
-                hamu.Text = "";
-                rost_ = Convert.ToDouble(rost.Text);
-                rost.Text = "";
-                leves = new Leves(megneveves_, kaloria_, feherje_, zsir_, szenhidrat_, hamu_, rost_);
-                levesconn.InsertLeves(leves);
-                Update();
-            }
-            catch (Exception err)
-            {
-
-                MessageBox.Show(err.ToString());
-            }
 
             
         }
 
         private void Update()
         {
+            deleteLevesButton.Enabled = false;
+            updateButton.Enabled = false;
+            DeselectButton.Enabled = false;
             levesek_listbox.Items.Clear();
             levesekList.Clear();
             levesconn.SelectLeves();
