@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySqlConnector;
+using System.Windows.Forms;
 
 namespace insert_leves
 {
@@ -32,7 +33,7 @@ namespace insert_leves
             try
             {
                 dbConnection.Open();
-
+                
                 MySqlCommand command = new MySqlCommand();
                 command.Connection = dbConnection;
                 command.CommandText = sqlStatement;
@@ -46,13 +47,13 @@ namespace insert_leves
 
                     levesek.Add(leves);
                 }
-
+                
                 dbConnection.Close();
             }
             catch (Exception)
             {
 
-                throw;
+                MessageBox.Show("Hiba a kapcsolatban.");
             }
         }
 
@@ -63,25 +64,26 @@ namespace insert_leves
 
         public void InsertLeves(Leves leves)
         {
-            sqlStatement = $"`levesek`(`megnevezes`, `kaloria`, `feherje`, `zsir`, `szenhidrat`, `hamu`, `rost`) VALUES "
+            sqlStatement = $"INSERT INTO `levesek`(`megnevezes`, `kaloria`, `feherje`, `zsir`, `szenhidrat`, `hamu`, `rost`) VALUES "
                 +$"('{leves.Megnevezes_}','{leves.Kaloria}','{leves.Feherje}','{leves.Zsir}','{leves.Szenhidrat}','{leves.Hamu}','{leves.Rost}');";
 
             try
             {
                 dbConnection.Open();
-
+                levesek.Clear();
                 MySqlCommand command = new MySqlCommand();
                 command.Connection = dbConnection;
                 command.CommandText = sqlStatement;
 
                 command.ExecuteNonQuery();
+                MessageBox.Show("Leves sikeresen hozzáadva.");
 
                 dbConnection.Close();
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
-                throw;
+                MessageBox.Show("Hiba a kapcsolatban.");
             }
         }
     }

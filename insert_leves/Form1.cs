@@ -18,11 +18,13 @@ namespace insert_leves
         string megneveves_;
         int kaloria_;
         double feherje_, zsir_, szenhidrat_, hamu_, rost_;
+        List<Leves> levesekList = new List<Leves>();
         public Form1()
         {
             InitializeComponent();
-            
-            
+            levesconn = new LevesekConnect();
+            Update();
+
         }
 
         private void megnevezes_TextChanged(object sender, EventArgs e)
@@ -45,6 +47,11 @@ namespace insert_leves
 
         }
 
+        private void levesek_listbox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void szenhidrat_TextChanged(object sender, EventArgs e)
         {
 
@@ -62,25 +69,43 @@ namespace insert_leves
 
         private void bevitel_Click(object sender, EventArgs e)
         {
-            levesconn = new LevesekConnect();
+            
 
             try
             {
                 megneveves_ = megnevezes.Text;
+                megnevezes.Text = "";
                 kaloria_ = Convert.ToInt32(kaloria.Text);
-                feherje_ = Convert.ToDouble(kaloria.Text);
+                kaloria.Text = "";
+                feherje_ = Convert.ToDouble(feherje.Text);
+                feherje.Text = "";
                 zsir_ = Convert.ToDouble(zsir.Text);
+                zsir.Text = "";
                 szenhidrat_ = Convert.ToDouble(szenhidrat.Text);
+                szenhidrat.Text = "";
                 hamu_ = Convert.ToDouble(hamu.Text);
-                rost_ = Convert.ToDouble(hamu.Text);
+                hamu.Text = "";
+                rost_ = Convert.ToDouble(rost.Text);
+                rost.Text = "";
+                leves = new Leves(megneveves_, kaloria_, feherje_, zsir_, szenhidrat_, hamu_, rost_);
+                levesconn.InsertLeves(leves);
+                Update();
             }
-            catch (Exception e)
+            catch (Exception err)
             {
 
-                MessageBox.Show(e);
+                MessageBox.Show(err.ToString());
             }
 
-            levesconn.InsertLeves();
+            
+        }
+
+        private void Update()
+        {
+            levesconn.SelectLeves();
+            levesekList = levesconn.GetLevesek();
+            levesek_listbox.Items.Clear();
+            levesek_listbox.Items.AddRange(levesekList.ToArray());
         }
     }
 }
