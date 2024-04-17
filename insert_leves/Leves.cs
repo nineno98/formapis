@@ -8,6 +8,7 @@ namespace insert_leves
 {
     class Leves
     {
+        private int id_;
         private string megnevezes_;
         private int kaloria_;
         private double feherje_;
@@ -27,6 +28,20 @@ namespace insert_leves
             this.rost_ = rost_;
         }
 
+        public Leves(int id, string megnevezes_, int kaloria_, double feherje_, double zsir_, double szenhidrat_, double hamu_, double rost_)
+        {
+            this.Id_ = id;
+            this.megnevezes_ = megnevezes_;
+            this.kaloria_ = kaloria_;
+            this.feherje_ = feherje_;
+            this.zsir_ = zsir_;
+            this.szenhidrat_ = szenhidrat_;
+            this.hamu_ = hamu_;
+            this.rost_ = rost_;
+        }
+
+        
+
         public string Megnevezes_ { get => megnevezes_; set => megnevezes_ = value; }
         public int Kaloria { get => kaloria_; set => kaloria_ = value; }
         public double Feherje { get => feherje_; set => feherje_ = value; }
@@ -34,7 +49,7 @@ namespace insert_leves
         public double Szenhidrat { get => szenhidrat_; set => szenhidrat_ = value; }
         public double Hamu { get => hamu_; set => hamu_ = value; }
         public double Rost { get => rost_; set => rost_ = value; }
-
+        public int Id_ { get => id_; set => id_ = value; }
 
         public override string ToString()
         {

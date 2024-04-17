@@ -29,7 +29,7 @@ namespace insert_leves
         }
         public void SelectLeves()
         {
-            sqlStatement = "SELECT megnevezes, kaloria, feherje, zsir, szenhidrat, hamu, rost FROM `levesek`;";
+            sqlStatement = "SELECT id, megnevezes, kaloria, feherje, zsir, szenhidrat, hamu, rost FROM `levesek`;";
             try
             {
                 dbConnection.Open();
@@ -42,7 +42,7 @@ namespace insert_leves
 
                 while (reader.Read())
                 {
-                    leves = new Leves(reader.GetString(0), reader.GetInt32(1), reader.GetDouble(2), reader.GetDouble(3), reader.GetDouble(4), reader.GetDouble(5), reader.GetDouble(6));
+                    leves = new Leves(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetDouble(3), reader.GetDouble(4), reader.GetDouble(5), reader.GetDouble(6), reader.GetDouble(7));
 
 
                     levesek.Add(leves);
@@ -90,13 +90,7 @@ namespace insert_leves
         public void DeleteLeves(Leves leves)
         {
             sqlStatement = $"DELETE FROM `levesek` " +
-                $"WHERE `megnevezes` = '{leves.Megnevezes_}' " +
-                $"and `kaloria` = '{leves.Kaloria}' " +
-                $"and `feherje` = '{leves.Feherje}' " +
-                $"and `zsir` = '{leves.Zsir}' " +
-                $"and `szenhidrat` = '{leves.Szenhidrat}' " +
-                $"and `hamu` = '{leves.Hamu}' " +
-                $"and `rost` = '{leves.Rost}';";
+                $"WHERE `id` = {leves.Id_};";
 
             try
             {
@@ -108,6 +102,39 @@ namespace insert_leves
 
                 command.ExecuteNonQuery();
                 MessageBox.Show("Sikeresen törölve.");
+
+                dbConnection.Close();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public void UpdateLevesek(Leves leves)
+        {
+            sqlStatement = $"UPDATE `levesek` SET " +
+                $"`megnevezes`='{leves.Megnevezes_}'," +
+                $"`kaloria`='{leves.Kaloria}'," +
+                $"`feherje`='{leves.Feherje}'," +
+                $"`zsir`='{leves.Zsir}'," +
+                $"`szenhidrat`='{leves.Szenhidrat}'," +
+                $"`hamu`='{leves.Hamu}'," +
+                $"`rost`='{leves.Rost}'" +
+                $"WHERE id = {leves.Id_};";
+
+            try
+            {
+                dbConnection.Open();
+
+                levesek.Clear();
+                MySqlCommand command = new MySqlCommand();
+                command.Connection= dbConnection;
+                command.CommandText = sqlStatement;
+                command.ExecuteNonQuery();
+
+                MessageBox.Show("Sikeresene frissítve");
 
                 dbConnection.Close();
             }

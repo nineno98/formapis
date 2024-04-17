@@ -46,13 +46,15 @@ namespace insert_leves
             this.bevitel = new System.Windows.Forms.Button();
             this.levesek_listbox = new System.Windows.Forms.ListBox();
             this.deleteLevesButton = new System.Windows.Forms.Button();
+            this.updateButton = new System.Windows.Forms.Button();
+            this.DeselectButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // megnevezes
             // 
             this.megnevezes.Location = new System.Drawing.Point(531, 57);
             this.megnevezes.Name = "megnevezes";
-            this.megnevezes.Size = new System.Drawing.Size(100, 20);
+            this.megnevezes.Size = new System.Drawing.Size(119, 20);
             this.megnevezes.TabIndex = 0;
             this.megnevezes.TextChanged += new System.EventHandler(this.megnevezes_TextChanged);
             // 
@@ -60,7 +62,7 @@ namespace insert_leves
             // 
             this.kaloria.Location = new System.Drawing.Point(531, 83);
             this.kaloria.Name = "kaloria";
-            this.kaloria.Size = new System.Drawing.Size(100, 20);
+            this.kaloria.Size = new System.Drawing.Size(119, 20);
             this.kaloria.TabIndex = 1;
             this.kaloria.TextChanged += new System.EventHandler(this.kaloria_TextChanged);
             // 
@@ -68,7 +70,7 @@ namespace insert_leves
             // 
             this.feherje.Location = new System.Drawing.Point(531, 109);
             this.feherje.Name = "feherje";
-            this.feherje.Size = new System.Drawing.Size(100, 20);
+            this.feherje.Size = new System.Drawing.Size(119, 20);
             this.feherje.TabIndex = 2;
             this.feherje.TextChanged += new System.EventHandler(this.feherje_TextChanged);
             // 
@@ -76,7 +78,7 @@ namespace insert_leves
             // 
             this.zsir.Location = new System.Drawing.Point(531, 135);
             this.zsir.Name = "zsir";
-            this.zsir.Size = new System.Drawing.Size(100, 20);
+            this.zsir.Size = new System.Drawing.Size(119, 20);
             this.zsir.TabIndex = 3;
             this.zsir.TextChanged += new System.EventHandler(this.zsir_TextChanged);
             // 
@@ -84,7 +86,7 @@ namespace insert_leves
             // 
             this.szenhidrat.Location = new System.Drawing.Point(530, 161);
             this.szenhidrat.Name = "szenhidrat";
-            this.szenhidrat.Size = new System.Drawing.Size(101, 20);
+            this.szenhidrat.Size = new System.Drawing.Size(120, 20);
             this.szenhidrat.TabIndex = 4;
             this.szenhidrat.TextChanged += new System.EventHandler(this.szenhidrat_TextChanged);
             // 
@@ -92,7 +94,7 @@ namespace insert_leves
             // 
             this.hamu.Location = new System.Drawing.Point(530, 187);
             this.hamu.Name = "hamu";
-            this.hamu.Size = new System.Drawing.Size(101, 20);
+            this.hamu.Size = new System.Drawing.Size(120, 20);
             this.hamu.TabIndex = 5;
             this.hamu.TextChanged += new System.EventHandler(this.hamu_TextChanged);
             // 
@@ -100,7 +102,7 @@ namespace insert_leves
             // 
             this.rost.Location = new System.Drawing.Point(530, 213);
             this.rost.Name = "rost";
-            this.rost.Size = new System.Drawing.Size(101, 20);
+            this.rost.Size = new System.Drawing.Size(120, 20);
             this.rost.TabIndex = 6;
             this.rost.TextChanged += new System.EventHandler(this.rost_TextChanged);
             // 
@@ -188,7 +190,7 @@ namespace insert_leves
             // 
             // deleteLevesButton
             // 
-            this.deleteLevesButton.Location = new System.Drawing.Point(530, 354);
+            this.deleteLevesButton.Location = new System.Drawing.Point(530, 324);
             this.deleteLevesButton.Name = "deleteLevesButton";
             this.deleteLevesButton.Size = new System.Drawing.Size(101, 35);
             this.deleteLevesButton.TabIndex = 16;
@@ -196,11 +198,33 @@ namespace insert_leves
             this.deleteLevesButton.UseVisualStyleBackColor = true;
             this.deleteLevesButton.Click += new System.EventHandler(this.deleteLevesButton_Click);
             // 
+            // updateButton
+            // 
+            this.updateButton.Location = new System.Drawing.Point(530, 289);
+            this.updateButton.Name = "updateButton";
+            this.updateButton.Size = new System.Drawing.Size(101, 29);
+            this.updateButton.TabIndex = 17;
+            this.updateButton.Text = "Update";
+            this.updateButton.UseVisualStyleBackColor = true;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
+            // 
+            // DeselectButton
+            // 
+            this.DeselectButton.Location = new System.Drawing.Point(530, 365);
+            this.DeselectButton.Name = "DeselectButton";
+            this.DeselectButton.Size = new System.Drawing.Size(101, 30);
+            this.DeselectButton.TabIndex = 18;
+            this.DeselectButton.Text = "Deselect";
+            this.DeselectButton.UseVisualStyleBackColor = true;
+            this.DeselectButton.Click += new System.EventHandler(this.DeselectButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.DeselectButton);
+            this.Controls.Add(this.updateButton);
             this.Controls.Add(this.deleteLevesButton);
             this.Controls.Add(this.levesek_listbox);
             this.Controls.Add(this.bevitel);
@@ -244,6 +268,8 @@ namespace insert_leves
         private System.Windows.Forms.Button bevitel;
         private System.Windows.Forms.ListBox levesek_listbox;
         private System.Windows.Forms.Button deleteLevesButton;
+        private System.Windows.Forms.Button updateButton;
+        private System.Windows.Forms.Button DeselectButton;
     }
 }
 
