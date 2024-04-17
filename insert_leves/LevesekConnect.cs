@@ -86,5 +86,36 @@ namespace insert_leves
                 MessageBox.Show("Hiba a kapcsolatban.");
             }
         }
+
+        public void DeleteLeves(Leves leves)
+        {
+            sqlStatement = $"DELETE FROM `levesek` " +
+                $"WHERE `megnevezes` = '{leves.Megnevezes_}' " +
+                $"and `kaloria` = '{leves.Kaloria}' " +
+                $"and `feherje` = '{leves.Feherje}' " +
+                $"and `zsir` = '{leves.Zsir}' " +
+                $"and `szenhidrat` = '{leves.Szenhidrat}' " +
+                $"and `hamu` = '{leves.Hamu}' " +
+                $"and `rost` = '{leves.Rost}';";
+
+            try
+            {
+                dbConnection.Open();
+                levesek.Clear();
+                MySqlCommand command = new MySqlCommand();
+                command.Connection= dbConnection;
+                command.CommandText = sqlStatement;
+
+                command.ExecuteNonQuery();
+                MessageBox.Show("Sikeresen törölve.");
+
+                dbConnection.Close();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

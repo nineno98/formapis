@@ -45,6 +45,7 @@ namespace insert_leves
             this.label7 = new System.Windows.Forms.Label();
             this.bevitel = new System.Windows.Forms.Button();
             this.levesek_listbox = new System.Windows.Forms.ListBox();
+            this.deleteLevesButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // megnevezes
@@ -185,11 +186,22 @@ namespace insert_leves
             this.levesek_listbox.TabIndex = 15;
             this.levesek_listbox.SelectedIndexChanged += new System.EventHandler(this.levesek_listbox_SelectedIndexChanged);
             // 
+            // deleteLevesButton
+            // 
+            this.deleteLevesButton.Location = new System.Drawing.Point(530, 354);
+            this.deleteLevesButton.Name = "deleteLevesButton";
+            this.deleteLevesButton.Size = new System.Drawing.Size(101, 35);
+            this.deleteLevesButton.TabIndex = 16;
+            this.deleteLevesButton.Text = "Delete selected item";
+            this.deleteLevesButton.UseVisualStyleBackColor = true;
+            this.deleteLevesButton.Click += new System.EventHandler(this.deleteLevesButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.deleteLevesButton);
             this.Controls.Add(this.levesek_listbox);
             this.Controls.Add(this.bevitel);
             this.Controls.Add(this.label7);
@@ -231,6 +243,7 @@ namespace insert_leves
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button bevitel;
         private System.Windows.Forms.ListBox levesek_listbox;
+        private System.Windows.Forms.Button deleteLevesButton;
     }
 }
 

@@ -49,12 +49,21 @@ namespace insert_leves
 
         private void levesek_listbox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Leves selectedLeves = (Leves)levesek_listbox.SelectedItem;
 
         }
 
         private void szenhidrat_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void deleteLevesButton_Click(object sender, EventArgs e)
+        {
+            Leves levesForDeleting = (Leves)levesek_listbox.SelectedItem;
+
+            levesconn.DeleteLeves(levesForDeleting);
+            Update();
         }
 
         private void hamu_TextChanged(object sender, EventArgs e)
@@ -103,6 +112,7 @@ namespace insert_leves
         private void Update()
         {
             levesconn.SelectLeves();
+            
             levesekList = levesconn.GetLevesek();
             levesek_listbox.Items.Clear();
             levesek_listbox.Items.AddRange(levesekList.ToArray());
